@@ -1,10 +1,11 @@
+import torch
 import torch.nn as nn
 from transformers import BertModel
 
 
 class EfficientPunctBERT(nn.Module):
 
-    def __init__(self):
+    def __init__(self, config):
         super(EfficientPunctBERT, self).__init__()
         self.mlp = nn.Sequential(
             nn.Linear(768, 1024),
@@ -21,7 +22,7 @@ class BERTMLP(nn.Module):
 
     def __init__(self, config):
         """
-        :param config: Configuration dictionary with a `"linear"` key to indicate dimensions of linear layer(s).
+        :param config: `dict`. Configuration dictionary with a `"linear"` key to indicate dimensions of linear layer(s).
         """
         super(BERTMLP, self).__init__()
         self.config = config
@@ -36,6 +37,10 @@ class BERTMLP(nn.Module):
         return self.bert(**x).last_hidden_state[:, 1:-1, :]
 
     def forward(self, x):
+        # x['input_ids'].shape should be [1, N]
         x = self.bert_last_hidden(x)
+        # x.shape should be [1, N-2, 768]
+        x = torch.squeeze(x, dim=0)
         x = self.mlp(x)
+        # x.shape should be [N-2, 4]
         return x
