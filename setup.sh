@@ -1,1 +1,1 @@
-mkdir assets datasets
+mkdir assets datasets models/trained
