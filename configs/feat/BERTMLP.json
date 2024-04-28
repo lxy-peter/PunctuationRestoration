@@ -1,4 +1,0 @@
-{
-    "linear": [768, 1024, 4],
-    "pretrained": "models/trained/BERT.pt"
-}
