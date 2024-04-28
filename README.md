@@ -6,14 +6,12 @@
 Install this framework by using
 ```bash
 git clone https://github.com/lxy-peter/PunctuationRestoration
-mv PunctuationRestoration pr
+bash setup.sh
 ```
-Of course, the `mv` command is optional, but the rest of this documentation will refer to the main, root directory of this framework as `pr/`.
-
 Please install the following extra items as needed.
 
 ### Kaldi
-1. In `pr/`, run
+1. In `PunctuationRestoration/`, run
 ```bash
 git clone https://github.com/kaldi-asr/kaldi
 ```
