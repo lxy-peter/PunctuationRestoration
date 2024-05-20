@@ -66,9 +66,9 @@ bash scripts/efficientpunct.sh &
 
 The main program's behavior can be customized by modifying arguments in the `.sh` files, as well as the configuration file specified by the `config_path` argument. Arguments and configuration parameters will be checked by the main program for validity. However, even passing all validity checks does not guarantee that the program will run successfully. On the other hand, failing any validity check guarantees that the program will fail.
 
-The following subsection describes valid values for the `mode` argument.
-
 ### Modes
+
+This subsection describes valid values for the `mode` argument when running model-related programs.
 
 The `mode` argument can take on the following values:
 - `train`: Training the model. In this case, the `train`, `dev`, and `test` data subsets are required to be present.
@@ -76,6 +76,20 @@ The `mode` argument can take on the following values:
 - `inspect`: Manually examining punctuation behavior on select utterances. An `inspect` subset is required. This mode is designed for handling a small number of samples.
 
 Certain arguments (e.g. `optimizer` and `epochs`) are applicable only when `mode='train'`.
+
+### Dataset Building
+
+You can run
+```bash
+bash scripts/build_dataset.sh &
+```
+to build a dataset. Currently, only the YouTube protocol is supported, activated by setting `config_path` to `configs/YouTube.json`.
+
+
+## Datasets
+
+Download SponSpeech at [https://storage.googleapis.com/sponspeech/sponspeech.tar.gz](https://storage.googleapis.com/sponspeech/sponspeech.tar.gz).
+
 
 ## Other Notes
 
